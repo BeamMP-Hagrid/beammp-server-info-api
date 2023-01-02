@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"time"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	routes "github.com/ignaciochemes/beammp-server-info-api/src/Routes"
 )
@@ -21,12 +22,14 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/servers", routes.GetDataFromBMPBackendRoute)
 
+	cors := handlers.AllowedOrigins([]string{"*"})
+
 	srv := &http.Server{
-		Addr:         "0.0.0.0:3000",
+		Addr:         "0.0.0.0:3003",
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
 		IdleTimeout:  time.Second * 60,
-		Handler:      r,
+		Handler:      handlers.CORS(cors)(r),
 	}
 
 	go func() {
