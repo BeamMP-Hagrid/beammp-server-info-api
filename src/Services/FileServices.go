@@ -9,7 +9,7 @@ import (
 	"os/exec"
 )
 
-// TODO:
+// TODO
 //Guardar archivo con nombre y la version
 //Generar sistema de ERRORES para el cliente
 //Generar sistema de actualizacion de archivos si la version es diferente
