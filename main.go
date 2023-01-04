@@ -21,6 +21,8 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/servers", routes.GetDataFromBMPBackendRoute)
+	r.HandleFunc("/files/update", routes.GetNewVersionOfServer)
+	r.HandleFunc("/files", routes.SendBeamMPServerFiles)
 
 	cors := handlers.AllowedOrigins([]string{"*"})
 
