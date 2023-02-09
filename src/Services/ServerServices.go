@@ -6,10 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
+	constants "github.com/ignaciochemes/beammp-server-info-api/src/Constants"
 	structs "github.com/ignaciochemes/beammp-server-info-api/src/Structs"
 )
-
-var uri = "https://backend.beammp.com/servers-info"
 
 func GetDataFromBMPBackendService(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
@@ -22,7 +21,7 @@ func GetDataFromBMPBackendService(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(newError)
 		return
 	}
-	response, err := http.Get(uri)
+	response, err := http.Get(constants.Uri)
 	if err != nil {
 		newError := structs.Error{
 			Error:   "Error getting data from beam mp backend",
